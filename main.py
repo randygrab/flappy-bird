@@ -4,40 +4,46 @@ from game_loop import game_loop
 # Game Initialization
 pygame.init()
 
-# Create the screen with the dimensions of the background image
-screen = pygame.display.set_mode((608, 457))  # Set the size of the screen to match your background image
-clock = pygame.time.Clock()
+# Create the game screen
+game_screen = pygame.display.set_mode((608, 457))
 
-# Load the background image and get its dimensions
-bg_surface = pygame.image.load('assets/background.png').convert_alpha()
+# Game clock
+game_clock = pygame.time.Clock()
 
-# Load the main menu background and scale it to fit the screen
-main_menu_bg = pygame.image.load('assets/main_menu_bg.png').convert_alpha()
-main_menu_bg = pygame.transform.scale(main_menu_bg, (608, 457))
+# Background surface
+background_surface = pygame.image.load('assets/background.png').convert_alpha()
 
-# Load the start game button image, scale it, and get its rect
-start_game_button = pygame.image.load('assets/start_game.png').convert_alpha()
-start_game_button = pygame.transform.scale(start_game_button, (177, 52))
-start_game_button_rect = start_game_button.get_rect(center = (304, 228))
+# Main menu background surface
+main_menu_bg_surface = pygame.image.load('assets/main_menu_bg.png').convert_alpha()
+main_menu_bg_surface = pygame.transform.scale(main_menu_bg_surface, (608, 457))
 
-# Load the retry button image and get its rect
-retry_button = pygame.image.load('assets/retry.png').convert_alpha()
-retry_button_rect = retry_button.get_rect(center = (304, 228))
+# Start game button surface, scaled and positioned
+start_button_surface = pygame.image.load('assets/start_game.png').convert_alpha()
+start_button_surface = pygame.transform.scale(start_button_surface, (177, 52))
+start_button_rect = start_button_surface.get_rect(center = (304, 228))
 
-# Load the main menu button image and get its rect
-main_menu_button = pygame.image.load('assets/main_menu.png').convert_alpha()
-main_menu_button_rect = main_menu_button.get_rect(center = (304, 300))
+# Retry button surface, positioned
+retry_button_surface = pygame.image.load('assets/retry.png').convert_alpha()
+retry_button_rect = retry_button_surface.get_rect(center = (304, 228))
 
-# Game Sprites
-bird_surface = pygame.image.load('assets/bluebird-midflap.png').convert_alpha()
-bird_surface = pygame.transform.scale(bird_surface, (50, 50))
-bird_rect = bird_surface.get_rect(center = (50, 256))
+# Main menu button surface, positioned
+main_menu_button_surface = pygame.image.load('assets/main_menu.png').convert_alpha()
+main_menu_button_rect = main_menu_button_surface.get_rect(center = (304, 300))
 
-pipe_surface = pygame.image.load('assets/pipe.png').convert_alpha()
-pipe_surface = pygame.transform.scale(pipe_surface, (80, 250))  # Resize the pipe image
+# Bird sprite surface, scaled
+bird_sprite = pygame.image.load('assets/bluebird-midflap.png').convert_alpha()
+bird_sprite = pygame.transform.scale(bird_sprite, (50, 50))
+bird_rect = bird_sprite.get_rect(center = (50, 256))
 
-# Define game font
+# Pipe sprite surface, scaled
+pipe_sprite = pygame.image.load('assets/pipe.png').convert_alpha()
+pipe_sprite = pygame.transform.scale(pipe_sprite, (80, 250))
+
+# Game font
 game_font = pygame.font.Font(None, 50)
 
-# Start the game loop
-game_loop(screen, clock, bg_surface, main_menu_bg, start_game_button, start_game_button_rect, retry_button, retry_button_rect, main_menu_button, main_menu_button_rect, bird_surface, bird_rect, pipe_surface, game_font)
+# Start game loop
+game_loop(game_screen, game_clock, background_surface, main_menu_bg_surface,
+         start_button_surface, start_button_rect, retry_button_surface,
+         retry_button_rect, main_menu_button_surface, main_menu_button_rect,
+         bird_sprite, bird_rect, pipe_sprite, game_font)
